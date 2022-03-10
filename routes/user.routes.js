@@ -2,7 +2,6 @@ const router = require("express").Router()
 const bcrypt = require("bcryptjs")
 const User = require("../models/User.model")
 const jwt = require("jsonwebtoken")
-// const { isAuthenticated } = require("../middlewares/jwt.middleware")
 
 const saltRounds = 10
 
@@ -28,9 +27,7 @@ router.put("/editProfile", (req, res) => {
             return User.findOneAndUpdate({email},{ passwordHash, username, imgProfile }, {new: true})
         })
         .then((createdUser) => {
-            console.log(createdUser)
             const { email, username, imgProfile, _id } = createdUser
-            // const user = { email, username, imgProfile, _id }
             const payload = { _id, username, email, imgProfile }
 
             const authToken = jwt.sign(
@@ -39,8 +36,6 @@ router.put("/editProfile", (req, res) => {
                 { algorithm: "HS256", expiresIn: "6h" }
             )
             res.status(200).json({ authToken })
-
-            // res.status(201).json({ user })
         })
         .catch(err => {
             console.log(err)
