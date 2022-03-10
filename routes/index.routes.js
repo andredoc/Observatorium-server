@@ -7,5 +7,4 @@ router.use("/rating", require("./rating.routes"))
 router.use("/user", require("./user.routes"))
 router.use("/admin", require("./admin.routes"))
 
-
 module.exports = router

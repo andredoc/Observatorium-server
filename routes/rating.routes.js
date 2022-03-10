@@ -37,13 +37,6 @@ router.get(`/getUserComments/:userId`, (req, res) => {
 
 
 
-/**
- * route.get("/getItemComments/:ratingId")
- * Rating.find(ratindId) => todos los comentarios de ese Item
- * res.json( todos los comentarios de un item)
- * **/
-
-
 // LEER SOLO COMENTARIOS DE UN ITEM ///////////////////////
 
 router.get(`/getItemComments/:ratingId`, (req, res) => {
@@ -54,6 +47,7 @@ router.get(`/getItemComments/:ratingId`, (req, res) => {
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
+
 
 
 // CREAR COMMENTARIO ///////////////////////
@@ -72,6 +66,7 @@ router.post(`/createComment/:itemId`, isAuthenticated, async (req, res) => {
 })
 
 
+
 // EDITAR COMENTARIOS ///////////////////////
 
 router.put(`/editComment/:id`, isAuthenticated, (req, res) => {
@@ -83,6 +78,7 @@ router.put(`/editComment/:id`, isAuthenticated, (req, res) => {
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
+
 
 
 // BORRAR COMENTARIO ///////////////////////
@@ -97,6 +93,7 @@ router.delete(`/deleteComment/:id`, isAuthenticated, (req, res) => {
 })
 
 
+
 // CREAR ME GUSTA  ///////////////////////
 
 router.post('/addRating/:id', isAuthenticated, (req, res) => {
@@ -109,6 +106,5 @@ router.post('/addRating/:id', isAuthenticated, (req, res) => {
         .then(() => res.status(200).json())
         .catch(err => res.status(500).json(err))
 })
-
 
 module.exports = router

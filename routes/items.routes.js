@@ -1,6 +1,5 @@
 const router = require("express").Router()
 const { isAuthenticated } = require("./../middlewares/jwt.middleware")
-
 const Item = require("./../models/Item.model")
 const Rating = require("./../models/Rating.model")
 
@@ -74,7 +73,9 @@ router.post("/createItem", isAuthenticated, (req, res) => {
         .catch(err => res.status(500).json(err))
 })
 
-// DAR LIKE A UN ITEM
+
+
+// DAR LIKE A UN ITEM ///////////////////////
 
 router.put("/updateLikeToItem/:itemId", isAuthenticated, (req, res) => {
     const { itemId } = req.params
@@ -89,6 +90,7 @@ router.put("/updateLikeToItem/:itemId", isAuthenticated, (req, res) => {
         .then((response) => res.json(response))
         .catch(err => res.status(400).json(err))
 })
+
 
 
 // EDITAR ITEMS ///////////////////////
@@ -115,6 +117,5 @@ router.delete("/deleteItem/:item_id", isAuthenticated, (req, res) => {
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
-
 
 module.exports = router

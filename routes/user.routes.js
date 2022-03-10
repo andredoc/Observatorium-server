@@ -9,8 +9,6 @@ const saltRounds = 10
 router.put("/editProfile", (req, res) => {
     const { email, username, password, imgProfile } = req.body
 
-    
-
     if (password.length < 2) {
         res.status(400).json({ message: "La contraseña tiene que tener mínimo 3 letras" })
         return
@@ -60,6 +58,5 @@ router.delete("/deleteUser/:user_id", (req, res) => {
         .then(response => res.json(response))
         .catch(err =>res.status(500).json(err))
 })
-
 
 module.exports = router
